@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cvfddlfgw6l8i"]
+
+[ext_resource type="Script" uid="uid://cxq5d1fll23og" path="res://network_manager.gd" id="1_e1eew"]
+[ext_resource type="Script" uid="uid://dpa6l1sbdq4tr" path="res://menu.gd" id="3_yb55e"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1wv32"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmvqm"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="Sky" id="Sky_1wv32"]
+
+[sub_resource type="Environment" id="Environment_rmvqm"]
+sky = SubResource("Sky_1wv32")
+
+[node name="Node3D" type="Node3D" unique_id=1264688138]
+
+[node name="NetworkManager" type="Node" parent="." unique_id=915374980]
+script = ExtResource("1_e1eew")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1118073043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2132374, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1960355917]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1wv32")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=389661192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13211524, 0)
+shape = SubResource("BoxShape3D_rmvqm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=617549682]
+transform = Transform3D(-0.9992138, 0, 0.039645433, 0, 1, 0, -0.039645433, 0, -0.9992138, 0, 3.5513434, -17.507954)
+light_energy = 7.31
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1504551102]
+environment = SubResource("Environment_rmvqm")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=310897540]
+_spawnable_scenes = PackedStringArray("uid://766jsikflxl")
+spawn_path = NodePath("../Players")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=776799376]
+
+[node name="Menu" type="Control" parent="CanvasLayer" unique_id=1941757598]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_yb55e")
+
+[node name="HostButton" type="Button" parent="CanvasLayer/Menu" unique_id=189387539]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 288.0
+offset_right = 824.0
+offset_bottom = 437.0
+text = "HOST"
+
+[node name="IPInput" type="LineEdit" parent="CanvasLayer/Menu" unique_id=1618017667]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 27.0
+offset_right = 811.0
+offset_bottom = 103.0
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/Menu" unique_id=477862596]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 131.0
+offset_right = 802.0
+offset_bottom = 213.0
+text = "JOIN"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Menu" unique_id=1954536627]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 547.0
+offset_right = 751.0
+offset_bottom = 609.0
+
+[node name="Players" type="Node3D" parent="." unique_id=1161806768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4795303, 0)
